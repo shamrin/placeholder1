@@ -26,12 +26,13 @@ Collections:
 
 Queries:
 
-* Customer wants to see their messages:
+* Customer wants to see messages:
 
 ```sql
-SELECT message.sent_at, message.text, message.sender_user_id
+SELECT message.sent_at, message.text, message.sender_user_id, employee.name, employee.photo, employee.user_id
   FROM message, conversation, employee
-  WHERE conversation.customer_id = current_user
-    AND message.conversation_id = conversation_id
-    AND employee.user_id IN /* only from the conversation ? */;
+ WHERE conversation.customer_id = current_user
+   AND message.conversation_id = conversation_id
+   AND employee.user_id = message.sender_user_id
+ ORDER BY sent_at DESC;
 ```
