@@ -28,8 +28,10 @@ Queries:
 
 * Customer wants to see their messages:
 
+```sql
 SELECT message.sent_at, message.text, message.sender_user_id
   FROM message, conversation, employee
   WHERE conversation.customer_id = current_user
     AND message.conversation_id = conversation_id
     AND employee.user_id IN /* only from the conversation ? */;
+```
