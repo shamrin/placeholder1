@@ -37,7 +37,7 @@ SELECT message.sent_at, message.text, message.sender_user_id, employee.name, emp
  ORDER BY sent_at DESC;
 ```
 
-currently working:
+currently working, albeit incorrectly:
 
 ```sql
 SELECT message.sent_at, message.text, message.sender_user_id, employee.name, employee.user_id
