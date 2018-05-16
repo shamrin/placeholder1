@@ -26,26 +26,15 @@ Collections:
 
 Queries:
 
-* Customer wants to see messages:
+* Customer wants to see their messages:
 
 ```sql
-SELECT message.sent_at, message.text, message.sender_user_id, employee.name, employee.photo, employee.user_id
-  FROM message, conversation, employee
- WHERE conversation.customer_id = current_user
-   AND message.conversation_id = conversation_id
-   AND employee.user_id = message.sender_user_id
- ORDER BY sent_at DESC;
-```
-
-currently working, albeit incorrectly:
-
-```sql
-SELECT message.sent_at, message.text, message.sender_user_id, employee.name, employee.user_id
-  FROM message, conversation, employee
- WHERE conversation.customer_id = 3
-   AND message.conversation_id = conversation_id
-   AND employee.user_id = message.sender_user_id
- ORDER BY message.sent_at;
+SELECT m.id, m.sent_at, m.text, m.sender_user_id, c.id AS c_id, e.name AS employee_name, e.user_id AS employee_user_id
+ FROM conversation AS c
+ RIGHT JOIN message AS m ON m.conversation_id = c.id
+ LEFT JOIN employee AS e ON e.user_id = m.sender_user_id
+ WHERE c.customer_id = 3
+ ORDER BY m.sent_at DESC;
 ```
 
 ```sql
@@ -77,7 +66,7 @@ INSERT INTO conversation VALUES (2, 3, TIMESTAMP 'epoch' + INTERVAL '100 second'
 INSERT INTO conversation VALUES (3, 4, TIMESTAMP 'epoch' + INTERVAL '200 second');
 
 INSERT INTO message VALUES (1, 2, 3, 'hi', TIMESTAMP 'epoch' + INTERVAL '101 second');
-INSERT INTO message VALUES (2, 2, 3, 'how are you?', TIMESTAMP 'epoch' + INTERVAL '101 second');
-INSERT INTO message VALUES (3, 2, 1, 'hi', TIMESTAMP 'epoch' + INTERVAL '110 second');
+INSERT INTO message VALUES (2, 2, 3, 'how are you?', TIMESTAMP 'epoch' + INTERVAL '102 second');
+INSERT INTO message VALUES (3, 2, 1, 'oh, hi', TIMESTAMP 'epoch' + INTERVAL '110 second');
 INSERT INTO message VALUES (4, 2, 1, 'i am good thank you', TIMESTAMP 'epoch' + INTERVAL '111 second');
 ```
