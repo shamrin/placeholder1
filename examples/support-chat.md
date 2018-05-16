@@ -36,3 +36,32 @@ SELECT message.sent_at, message.text, message.sender_user_id, employee.name, emp
    AND employee.user_id = message.sender_user_id
  ORDER BY sent_at DESC;
 ```
+
+```sql
+CREATE TABLE "user" (id INTEGER PRIMARY KEY);
+CREATE TABLE employee (user_id INTEGER PRIMARY KEY, name text);
+CREATE TABLE customer (user_id INTEGER PRIMARY KEY);
+CREATE TABLE conversation (id INTEGER PRIMARY KEY, customer_id INTEGER, created_at DATE);
+CREATE TABLE message (id INTEGER PRIMARY KEY, conversation_id INTEGER, sender_user_id INTEGER, "text" TEXT, sent_at DATE);
+```
+
+```sql
+INSERT INTO "user" VALUES (1);
+INSERT INTO "user" VALUES (2);
+INSERT INTO "user" VALUES (3);
+INSERT INTO "user" VALUES (4);
+
+INSERT INTO employee VALUES (1, 'John');
+INSERT INTO employee VALUES (2, 'Mary');
+
+INSERT INTO customer VALUES (3);
+INSERT INTO customer VALUES (4);
+```
+
+```sql
+DROP TABLE user;
+DROP TABLE employee;
+DROP TABLE customer;
+DROP TABLE conversation;
+DROP TABLE message;
+```
