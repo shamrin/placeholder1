@@ -14,3 +14,22 @@ Auth:
 * customers can read their own convesions
 * employee can add his own messages to any conversation
 * employee can read any conversation
+* (optional?) customer can only get their own employees info (name + photo)
+
+Collections:
+
+* user: {id}
+* customer: {user_id}
+* employee: {user_id, name, photo}
+* conversation: {customer_id, created_at}
+* message: {conversation_id, sender_user_id, text, sent_at}
+
+Queries:
+
+* Customer wants to see their messages:
+
+SELECT message.sent_at, message.text, message.sender_user_id
+  FROM message, conversation, employee
+  WHERE conversation.customer_id = current_user
+    AND message.conversation_id = conversation_id
+    AND employee.user_id IN /* only from the conversation ? */;
