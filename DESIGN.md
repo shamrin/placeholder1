@@ -24,6 +24,6 @@ SQL subset
 TBD
 
 
-## See also
+# See also
 
 * https://github.com/shamrin/blog2/blob/master/2018-05-11-placeholder-project.md
