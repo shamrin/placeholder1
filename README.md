@@ -6,19 +6,19 @@ yarn
 
 # Running
 
+Compile and run server:
+
 ```
-npm run compile
+npm run compile; and node dist/server.js
 ```
+
+Watch for changes and re-compile browser bundle:
 
 ```
 npm run bundle
 ```
 
-```
-node dist/server.js
-```
-
-Open http://localhost:4411 in the browser
+Open http://localhost:4411 in the browser.
 
 # Postgres
 
@@ -44,4 +44,3 @@ create table record
   data jsonb
 );
 ```
-
