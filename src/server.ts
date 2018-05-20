@@ -11,6 +11,9 @@ const wss = new WebSocket.Server({server})
 wss.on('connection', client => {
   client.on('message', data => {
     console.log('C->S', data)
+
+    console.log('S->C', data)
+    client.send(data)
     // reader.push(JSON.parse(data as any))
   })
 

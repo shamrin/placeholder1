@@ -1,6 +1,28 @@
 # Prerequisites
 
 ```
+yarn
+```
+
+# Running
+
+```
+npm run compile
+```
+
+```
+npm run bundle
+```
+
+```
+node dist/server.js
+```
+
+Open http://localhost:4411 in the browser
+
+# Postgres
+
+```
 brew install postgres
 brew services start postgresql
 ```
@@ -22,3 +44,4 @@ create table record
   data jsonb
 );
 ```
+

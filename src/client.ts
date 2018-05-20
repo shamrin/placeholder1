@@ -1,32 +1,40 @@
 const path = '/'
-const ws = new WebSocket('ws://' + window.location.host + path)
 
-ws.onopen = () => {
-  console.log('ws opened')
-}
-ws.onerror = e => {
-  console.error('ws error', e)
-}
+import {WSChannel, WSChannelCallbacks} from './types'
 
-ws.onmessage = msg => {
-  const data = JSON.parse(msg.data)
-  console.log('received', data)
-  // reader.onmessage!(data)
-}
+export default function({onmessage, onopen}: WSChannelCallbacks): WSChannel {
+  const ws = new WebSocket('ws://' + window.location.host + path)
 
-ws.onclose = () => {
-  console.warn('---- WEBSOCKET CLOSED ----')
-}
-
-export const write = (data: any) => {
-  if (ws.readyState === ws.OPEN) {
-    console.log('sending', data)
-    ws.send(JSON.stringify(data))
-  } else {
-    console.log('websocket message discarded because ws closed')
+  ws.onopen = () => {
+    console.log('ws opened')
+    onopen()
   }
-}
+  ws.onerror = e => {
+    console.error('ws error!', e)
+  }
+  
+  ws.onmessage = msg => {
+    const data = JSON.parse(msg.data)
+    console.log('received', data)
+    onmessage(data)
+  }
+  
+  ws.onclose = () => {
+    console.warn('---- WEBSOCKET CLOSED ----')
+  }
+  
+  const write = (data: any) => {
+    if (ws.readyState === ws.OPEN) {
+      console.log('sending', data)
+      ws.send(JSON.stringify(data))
+    } else {
+      console.log('websocket message discarded because ws closed')
+    }
+  }
+  
+  const close = () => {
+    ws.close()
+  }
 
-export const close = () => {
-  ws.close()
+  return {write, close}
 }
