@@ -25,7 +25,8 @@ export default [
         file: "public/bundle.js",
         format: "iife",
         name: "placeholder",
-        exports: "named"
+        exports: "named",
+        sourcemap: true
       }
     ],
     // doesn't work: https://github.com/rollup/rollup/pull/2125

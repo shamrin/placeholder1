@@ -6,16 +6,8 @@ yarn
 
 # Running
 
-Compile and run server:
-
 ```
-npm run compile; and node dist/server.js
-```
-
-Watch for changes and re-compile browser bundle:
-
-```
-npm run bundle
+make dev
 ```
 
 Open http://localhost:4411 in the browser.
