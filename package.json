@@ -1,9 +1,4 @@
 {
-  "scripts": {
-    "server-build": "tsc --watch --preserveWatchOutput",
-    "client-build": "rollup -c -w",
-    "server-run": "nodemon dist/server.js"
-  },
   "devDependencies": {
     "nodemon": "^1.18.5",
     "rollup": "^0.66.6",
