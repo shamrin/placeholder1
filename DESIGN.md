@@ -30,3 +30,4 @@ TBD
 * https://github.com/Nozbe/WatermelonDB ([via](https://news.ycombinator.com/item?id=17950992))
 * https://realm.io/products/realm-database/
 * https://sqorn.org
+* https://firebase.googleblog.com/2015/02/the-2120-ways-to-ensure-unique_68.html
