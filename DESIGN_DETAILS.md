@@ -17,7 +17,7 @@ We are going to allow SQL from the client-side. We will parse SQL with one of [l
 
 ## Interesting ideas
 
-* optimistic updates / caching does not to be perfect. It's enough if it works for some cases only. We will pick up the correct version eventually, through the server.
+* optimistic updates / caching does not need to be perfect. It's enough if it works for some cases only. We will pick up the correct version eventually, through the server.
 
 ## Open questions
 
