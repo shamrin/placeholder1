@@ -15,6 +15,10 @@ We are going to allow SQL from the client-side. We will parse SQL with one of [l
 2. add information about the current user id to the query. The user id will be checked by database, because `CONSTRAINT`s.
 3. allow client-side mini-postgres implementation. At the beginning it could be a bare-bones implmentation, with very simple queries supported.
 
+## Interesting ideas
+
+* optimistic updates / caching does not to be perfect. It's enough if it works for some cases only. We will pick up the correct version eventually, through the server.
+
 ## Open questions
 
 * [ ] Client-vs-server synchronisation protocol
