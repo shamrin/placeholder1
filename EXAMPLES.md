@@ -7,6 +7,8 @@
 
 In other words, [Supabase](https://supabase.io/), but with SQL and optimistic updates, and (hopefully) simpler.
 
+Frontend code examples below are using [Svelte](https://svelte.dev/).
+
 ## Hello world:
 
 Data definition:
