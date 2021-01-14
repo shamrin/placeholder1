@@ -55,7 +55,7 @@ function increment() {
 ```
 
 Admin UI:
-```html
+```svelte
 <script>
 import { getall } from "magic";
 let user_counters = getall(`select counterid, name, value from counter join user on userid`)
