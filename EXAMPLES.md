@@ -1,4 +1,4 @@
-# SQL on the frontend
+# SQL on the frontend, safely
 
 Hello world:
 
