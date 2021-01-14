@@ -58,7 +58,7 @@ ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
 Counter updates right away, without waiting for server to confirm the update.
 
 #### Admin UI
-```svelte
+```js
 import { useFetchOne, useFetchAll } from "placeholder";
 function Incrementer() {
   const counter = useFetchOne(`select value from counter`)
