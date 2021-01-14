@@ -3,6 +3,7 @@
 * Firebase-like real-time automatically synchronized database between frontend and backend
 * User are restricted to their own data, using [Postgres row security](https://www.postgresql.org/docs/13/ddl-rowsecurity.html)
 * Optimistic updates, frontend shows most recent data without server round trip
+* Built-in authentication
 
 In other words, Supabase, but with SQL and optimistic updates, and (hopefully) simpler.
 
