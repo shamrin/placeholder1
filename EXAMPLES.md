@@ -43,7 +43,7 @@ CREATE POLICY user_counter ON counter TO userid
     USING (userid = current_user);
 ```
 
-#### Button that shows how many time you've clicked on it
+#### Button showing how many time you've clicked on it
 ```html
 <script>
 import { execute, getone } from "magic"
