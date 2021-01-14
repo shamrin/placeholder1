@@ -77,16 +77,16 @@ ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
 
 ## FAQ
 
-**Isn't it dangerous to allow access to database from the browser?
+**Isn't it dangerous to allow access to database from the browser?**
 
-Yes, but not with "placeholder*. It's safe:
+Yes, but not with "placeholder*. It's safe with us:
 
-1. We parse the query on the server using Postgres original SQL parser, and check queries that queries are among the safe subset. 
+1. We parse the query on the server using Postgres original SQL parser, and check that queries are among the safe subset. 
 2. You have to set up security rules (uses Postgres row security under the head), to make sure users see their own data. 
-3. We automatically checks that you don't open the whole database to the world by accident.
+3. We automatically warn you if your security rules are unsafe. You will not open the whole database to the world by accident.
 4. Security rules are all in one place, Firebase-style. It makes them easy to review.
 
-**Okay, but what heave aggregate queries that could DoS the database?**
+**Okay, but could heavy aggregate queries DoS the database?**
 
 It's your responsibility to not overload the database. However, once the server is deployed to production, all existing queries are effectively frozen. We will deny any other queries. It means if you've never used heavy aggregate queries in user context, they will not allow in production.
 
