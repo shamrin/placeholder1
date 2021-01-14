@@ -7,7 +7,7 @@
 * Optimistic updates, frontend shows most recent data without server round trip
 * Built-in authentication
 
-In other words, [Supabase](https://supabase.io/), but with SQL and optimistic updates, and (hopefully) simpler.
+In other words, it's like [Supabase](https://supabase.io/), but with SQL and optimistic updates, and (hopefully) simpler.
 
 Notes on the examples below:
 * Authentication not demostrated 
