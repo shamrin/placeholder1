@@ -25,9 +25,9 @@ CREATE POLICY user ON user TO userid
 
 #### Show "Hello, username"
 ```js
-import { useGetOne } from "placeholder";
+import { useFetchOne } from "placeholder";
 function Hello() {
-  const user = useGetOne(`select name from user`)
+  const user = useFetchOne(`select name from user`)
   return <p>Hello, {user}</p>
 }
 ReactDOM.render(<Hello />, document.getElementById('hello'));
