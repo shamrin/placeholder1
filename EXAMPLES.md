@@ -48,8 +48,6 @@ CREATE POLICY user_counter ON counter TO userid
 <script>
 import { execute, getone } from "magic";
 let counter = getone(`select value from counter`)
-let userid = getone(`select userid from user`)
-
 function increment() {
   execute(`update counter set value = value + 1`)
 }
