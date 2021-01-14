@@ -39,7 +39,7 @@ CREATE POLICY user_counter ON counter TO userid
     USING (userid = current_user);
 ```
 
-Frontend:
+Frontend. Counter updates right away, without waiting for server to confirm the update.
 ```html
 <script>
 import { execute } from "magic";
