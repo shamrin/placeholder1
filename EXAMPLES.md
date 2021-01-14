@@ -16,9 +16,10 @@ CREATE POLICY user ON user TO userid
     USING (userid = current_user);
 ```
 
-Hello world:
+Hello world (Svelte):
 ```html
 <script>
+import { getone } from "magic";
 let name = getone(`select name from user`)
 </script>
 
@@ -38,6 +39,7 @@ CREATE POLICY user_counter ON counter TO userid
 Counter (with optimistic updates):
 ```html
 <script>
+import { execute } from "magic";
 let counter = query(`select value from counter`)
 let userid = query(`select userid from user`)
 
