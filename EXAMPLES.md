@@ -105,6 +105,6 @@ It's your responsibility to not overload the database. However, once the server 
 
 Yes, but we don't need to implement **all** of it. We support only a useful subset. We will simply skip optimistic updates for unsupported queries (with a warning during development).
 
-## Bobby tables?
+**Bobby tables?**
 
 See "Query params".
