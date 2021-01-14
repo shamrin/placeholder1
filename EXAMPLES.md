@@ -26,7 +26,7 @@ CREATE POLICY user ON user TO userid
 #### Show "Hello, username"
 ```html
 <script>
-import { getone } from "magic";
+import { getone } from "magic"
 let name = getone(`select name from user`)
 </script>
 
@@ -46,7 +46,7 @@ CREATE POLICY user_counter ON counter TO userid
 #### Button that shows how many time you've clicked on it
 ```html
 <script>
-import { execute, getone } from "magic";
+import { execute, getone } from "magic"
 let counter = getone(`select value from counter`)
 function increment() {
   execute(`update counter set value = value + 1`)
@@ -61,7 +61,7 @@ Counter updates right away, without waiting for server to confirm the update.
 #### Admin UI
 ```svelte
 <script>
-import { getall } from "magic";
+import { getall } from "magic"
 let user_counters = getall(`select counterid, name, value from counter join user on userid`)
 </script>
 
