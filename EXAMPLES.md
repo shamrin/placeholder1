@@ -1,9 +1,12 @@
 # SQL on the frontend, safely
 
 * Firebase-like real-time automatically synchronized database between frontend and backend
-* User are restricted to their own data, using [Postgres row security](https://www.postgresql.org/docs/13/ddl-rowsecurity.html)
+* Full power of SQL, Postgres under the hood
+* Safe, user are restricted to their own data, using [Postgres row security](https://www.postgresql.org/docs/13/ddl-rowsecurity.html)
 * Optimistic updates, frontend shows most recent data without server round trip
 * Built-in authentication
+
+(Note: authentication is not demostrated below.)
 
 In other words, [Supabase](https://supabase.io/), but with SQL and optimistic updates, and (hopefully) simpler.
 
