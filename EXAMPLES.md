@@ -85,3 +85,7 @@ LOL.
 **To get to optimistic updates you need to implement SQL in the frontend. Isn't it crazy?**
 
 Yes, but we don't need to implement **all** of it. Some sane subset is enough. We will simply skip optimistic updates for unsupported queries (with a warning during development).
+
+## Unresolved questions
+
+* Svelte examples are invalid because Svelte doesn't know about queries are reactive. 
