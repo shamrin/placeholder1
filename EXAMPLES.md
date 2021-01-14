@@ -55,8 +55,8 @@ function increment() {
 Admin UI:
 ```html
 <script>
-import { execute } from "magic";
-let user_counters = query(`select counterid, name, value from counter join user on userid`)
+import { getall } from "magic";
+let user_counters = getall(`select counterid, name, value from counter join user on userid`)
 </script>
 
 <table>
