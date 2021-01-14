@@ -7,15 +7,15 @@
 * Optimistic updates, frontend shows most recent data without server round trip
 * Built-in authentication
 
-(Note: authentication is not demostrated below.)
-
 In other words, [Supabase](https://supabase.io/), but with SQL and optimistic updates, and (hopefully) simpler.
 
-Frontend code examples below are using [Svelte](https://svelte.dev/).
+Notes:
+* Authentication is not demostrated below
+* Frontend code examples below are using [Svelte](https://svelte.dev/).
 
-## Hello world:
+## Hello world
 
-Data definition:
+#### Data definition
 ```sql
 CREATE TABLE user (name text);
 ALTER TABLE user ENABLE ROW LEVEL SECURITY;
@@ -23,7 +23,7 @@ CREATE POLICY user ON user TO userid
     USING (userid = current_user);
 ```
 
-Frontend (Svelte):
+#### Show "Hello, username"
 ```html
 <script>
 import { getone } from "magic";
@@ -35,7 +35,7 @@ let name = getone(`select name from user`)
 
 ## Optimistic updates
 
-Data definition:
+#### Data definition
 ```sql
 CREATE TABLE counter (counterid serial, value int, userid references user);
 ALTER TABLE counter ENABLE ROW LEVEL SECURITY;
@@ -43,7 +43,7 @@ CREATE POLICY user_counter ON counter TO userid
     USING (userid = current_user);
 ```
 
-Frontend. Counter updates right away, without waiting for server to confirm the update.
+#### Button that shows how many time you've clicked on it
 ```html
 <script>
 import { execute, getone } from "magic";
@@ -58,7 +58,9 @@ function increment() {
 <button on:click={increment}>{counter}</p>
 ```
 
-Admin UI:
+Counter updates right away, without waiting for server to confirm the update.
+
+#### Admin UI
 ```svelte
 <script>
 import { getall } from "magic";
