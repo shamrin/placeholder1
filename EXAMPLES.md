@@ -11,7 +11,7 @@ In other words, [Supabase](https://supabase.io/), but with SQL and optimistic up
 
 Notes on the examples below:
 * Authentication not demostrated 
-* Powered by [Svelte](https://svelte.dev/)
+* Powered by [React](https://reactjs.org)
 
 ## Hello world
 
@@ -24,13 +24,13 @@ CREATE POLICY user ON user TO userid
 ```
 
 #### Show "Hello, username"
-```html
-<script>
-import { getone } from "magic"
-let name = getone(`select name from user`)
-</script>
-
-<p>Hello, $name</p>
+```js
+import { useGetOne } from "placeholder";
+function Hello() {
+  const user = useGetOne(`select name from user`)
+  return <p>Hello, {user}</p>
+}
+ReactDOM.render(<Hello />, document.getElementById('hello'));
 ```
 
 ## Optimistic updates
@@ -44,48 +44,52 @@ CREATE POLICY user_counter ON counter TO userid
 ```
 
 #### Button showing how many time you've clicked on it
-```html
-<script>
-import { execute, getone } from "magic"
-let counter = getone(`select value from counter`)
-function increment() {
-  execute(`update counter set value = value + 1`)
+```js
+import { useFetchOne, execute } from "placeholder";
+function Incrementer() {
+  const counter = useFetchOne(`select value from counter`)
+  return (
+    <button onClick={() => execute(`update counter set value = value + 1`)}>
+    
 }
-</script>
-
-<button on:click={increment}>{counter}</p>
+ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
 ```
 
 Counter updates right away, without waiting for server to confirm the update.
 
 #### Admin UI
 ```svelte
-<script>
-import { getall } from "magic"
-let user_counters = getall(`select counterid, name, value from counter join user on userid`)
-</script>
+import { useFetchOne, useFetchAll } from "placeholder";
+function Incrementer() {
+  const counter = useFetchOne(`select value from counter`)
+  let userCounters = useFetchAll(`select counterid, name, value from counter join user on userid`)
 
-<table>
-{#each user_counters as { counterid, name, value } (counterid)}
-    <tr><td>{name}</td><td>{value}</td></tr>
-{/each}
-</table>
+  return (
+    <table>
+      {userCounters.map(({counterid, name, value}) => {
+        <tr key={counterid}><td>{name}</td><td>{value}</td></tr>
+      })}
+    </table>
+  )  
+}
+ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
 ```
 
 ## FAQ
 
-**Is it possible to implement?**
+**Isn't it dangerous to allow access to database from the browser?
 
-Yes.
+Yes, but not with "placeholder*. It's safe:
 
-**How?**
+1. We parse the query on the server using Postgres original SQL parser, and check queries that queries are among the safe subset. 
+2. You have to set up security rules (uses Postgres row security under the head), to make sure users see their own data. 
+3. We automatically checks that you don't open the whole database to the world by accident.
+4. Security rules are all in one place, Firebase-style. It makes them easy to review.
 
-LOL.
+**Okay, but what heave aggregate queries that could DoS the database?**
+
+It's your responsibility to not overload the database. However, once the server is deployed to production, all existing queries are effectively frozen. We will deny any other queries. It means if you've never used heavy aggregate queries in user context, they will not allow in production.
 
 **To get to optimistic updates you need to implement SQL in the frontend. Isn't it crazy?**
 
-Yes, but we don't need to implement **all** of it. Some sane subset is enough. We will simply skip optimistic updates for unsupported queries (with a warning during development).
-
-## Unresolved questions
-
-* Svelte examples are invalid because Svelte doesn't know about queries are reactive. 
+Yes, but we don't need to implement **all** of it. We support only a useful subset. We will simply skip optimistic updates for unsupported queries (with a warning during development).
