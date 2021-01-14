@@ -46,7 +46,7 @@ let userid = query(`select userid from user`)
 function increment() {
   execute(`update counter set value = value + 1`)
   
-  # equivalent to:
+  // equivalent to:
   execute(q`update counter set value = value + 1 where userid = {userid}`)
 }
 </script>
