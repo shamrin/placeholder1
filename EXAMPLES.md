@@ -25,12 +25,13 @@ CREATE POLICY user ON user TO userid
 
 #### Show "Hello, username"
 ```js
-import { useFetchOne } from "placeholder";
+import ReactDOM from 'react-dom'
+import { useFetchOne } from 'placeholder'
 function Hello() {
   const user = useFetchOne(`select name from user`)
   return <p>Hello, {user}</p>
 }
-ReactDOM.render(<Hello />, document.getElementById('hello'));
+ReactDOM.render(<Hello />, document.getElementById('hello'))
 ```
 
 ## Optimistic updates
@@ -45,33 +46,34 @@ CREATE POLICY user_counter ON counter TO userid
 
 #### Button showing how many time you've clicked on it
 ```js
-import { useFetchOne, execute } from "placeholder";
+import ReactDOM from 'react-dom'
+import { useFetchOne, execute } from 'placeholder'
 function Incrementer() {
   const counter = useFetchOne(`select value from counter`)
   const increment = () => execute(`update counter set value = value + 1`)
   return <button onClick={increment}>
 }
-ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
+ReactDOM.render(<Incrementer />, document.getElementById('incrementer'))
 ```
 
 Counter updates right away, without waiting for server to confirm the update.
 
 #### Admin UI
 ```js
-import { useFetchOne, useFetchAll } from "placeholder";
+import ReactDOM from 'react-dom'
+import { useFetchOne, useFetchAll } from 'placeholder'
 function Incrementer() {
-  const counter = useFetchOne(`select value from counter`)
-  let userCounters = useFetchAll(`select counterid, name, value from counter join user on userid`)
+  let counters = useFetchAll(`select counterid, name, value from counter join user on userid`)
 
   return (
     <table>
-      {userCounters.map(({counterid, name, value}) => {
+      {counters.map(({counterid, name, value}) => {
         <tr key={counterid}><td>{name}</td><td>{value}</td></tr>
       })}
     </table>
   )  
 }
-ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
+ReactDOM.render(<Incrementer />, document.getElementById('incrementer'))
 ```
 
 ## FAQ
