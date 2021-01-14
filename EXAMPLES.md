@@ -48,9 +48,8 @@ CREATE POLICY user_counter ON counter TO userid
 import { useFetchOne, execute } from "placeholder";
 function Incrementer() {
   const counter = useFetchOne(`select value from counter`)
-  return (
-    <button onClick={() => execute(`update counter set value = value + 1`)}>
-    
+  const increment = () => execute(`update counter set value = value + 1`)
+  return <button onClick={increment}>
 }
 ReactDOM.render(<Incrementer />, document.getElementById('incrementer'));
 ```
