@@ -1,6 +1,6 @@
 # SQL on the frontend, safely
 
-* Firebase-like automatic data sync between frontend and backend
+* Firebase-like real-time automatically synchronized database between frontend and backend
 * User are restricted to their own data, using [Postgres row security](https://www.postgresql.org/docs/13/ddl-rowsecurity.html)
 * Optimistic updates, frontend shows most recent data without server round trip
 
@@ -16,7 +16,7 @@ CREATE POLICY user ON user TO userid
     USING (userid = current_user);
 ```
 
-Hello world (Svelte):
+Frontend (Svelte):
 ```html
 <script>
 import { getone } from "magic";
@@ -30,13 +30,13 @@ let name = getone(`select name from user`)
 
 Data definition:
 ```sql
-CREATE TABLE counter (value int, userid references user);
+CREATE TABLE counter (counterid serial, value int, userid references user);
 ALTER TABLE counter ENABLE ROW LEVEL SECURITY;
 CREATE POLICY user_counter ON counter TO userid
     USING (userid = current_user);
 ```
 
-Counter (with optimistic updates):
+Frontend:
 ```html
 <script>
 import { execute } from "magic";
@@ -49,4 +49,18 @@ function increment() {
 </script>
 
 <button on:click={increment}>{counter}</p>
+```
+
+Admin UI:
+```html
+<script>
+import { execute } from "magic";
+let user_counters = query(`select counterid, name, value from counter join user on userid`)
+</script>
+
+<table>
+{#each user_counters as { counterid, name, value } (counterid)}
+    <tr><td>{name}</td><td>{value}</td></tr>
+{/each}
+</table>
 ```
