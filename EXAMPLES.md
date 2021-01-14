@@ -76,6 +76,16 @@ function Incrementer() {
 ReactDOM.render(<Incrementer />, document.getElementById('incrementer'))
 ```
 
+## Query params, SQL-injection safe
+
+```js
+import { fetchVal } from 'placeholder'
+
+const userid = 42
+const name = fetchVal(sql`select name from user where userid = {userid}`))
+console.log(`Hello, {name}`)
+```
+
 ## FAQ
 
 **Isn't it dangerous to allow access to database from the browser?**
@@ -94,3 +104,7 @@ It's your responsibility to not overload the database. However, once the server 
 **To get to optimistic updates you need to implement SQL in the frontend. Isn't it crazy?**
 
 Yes, but we don't need to implement **all** of it. We support only a useful subset. We will simply skip optimistic updates for unsupported queries (with a warning during development).
+
+## Bobby tables?
+
+See "Query params".
