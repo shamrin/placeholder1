@@ -11,7 +11,7 @@ In other words, [Supabase](https://supabase.io/), but with SQL and optimistic up
 
 Notes:
 * Authentication is not demostrated below
-* Frontend code examples below are using [Svelte](https://svelte.dev/).
+* Frontend code examples below are using [Svelte](https://svelte.dev/)
 
 ## Hello world
 
