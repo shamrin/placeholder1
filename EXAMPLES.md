@@ -9,9 +9,9 @@
 
 In other words, [Supabase](https://supabase.io/), but with SQL and optimistic updates, and (hopefully) simpler.
 
-Notes:
-* Authentication is not demostrated below
-* Frontend code examples below are using [Svelte](https://svelte.dev/)
+Notes on the examples below:
+* Authentication not demostrated 
+* Powered by [Svelte](https://svelte.dev/)
 
 ## Hello world
 
