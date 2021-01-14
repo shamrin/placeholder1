@@ -73,3 +73,14 @@ let user_counters = getall(`select counterid, name, value from counter join user
 {/each}
 </table>
 ```
+
+## FAQ
+
+**Is it possible to implement?**
+Yes.
+
+**How?**
+LOL.
+
+**To get to optimistic updates you need to implement SQL in the frontend**
+Yes, but we don't need to implement **all** of it. Some sane subset is enough. We will simply skip optimistic updates for unsupported queries (with a warning during development).
