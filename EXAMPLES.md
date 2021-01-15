@@ -107,4 +107,4 @@ Yes, but we don't need to implement **all** of it. We support only a useful subs
 
 **Bobby tables?**
 
-See "Query params".
+See "Query params" and [placeholder.ts](./placeholder.ts)
