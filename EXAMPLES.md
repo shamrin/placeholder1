@@ -98,7 +98,7 @@ const user = fetchValue(`select name from user`)
 <p>Hello, {$user}</p>
 ```
 
-(`fetchValueStore` is a [readable store](https://svelte.dev/tutorial/readable-stores).)
+(Here `fetchValue` is a [Svelte `readable` store](https://svelte.dev/tutorial/readable-stores).)
 
 ## FAQ
 
