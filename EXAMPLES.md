@@ -34,6 +34,8 @@ function Hello() {
 ReactDOM.render(<Hello />, document.getElementById('hello'))
 ```
 
+(Here `use.fetchValue` is a React hook.)
+
 ## Optimistic updates
 
 #### Data definition
