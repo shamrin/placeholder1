@@ -86,6 +86,19 @@ const name = fetchVal(sql`select name from user where userid = ${userid}`))
 console.log(`Hello, ${name}`)
 ```
 
+## "Hello world" in Svelte
+
+```svelte
+<script>
+import { fetchOneStore } from 'placeholder'
+const user = fetchOneStore(`select name from user`)
+</script>
+
+<p>Hello, {$user}</p>
+```
+
+(`fetchOneStore` is a [readable store](https://svelte.dev/tutorial/readable-stores).)
+
 ## FAQ
 
 **Isn't it dangerous to allow access to database from the browser?**
