@@ -79,11 +79,11 @@ ReactDOM.render(<Incrementer />, document.getElementById('incrementer'))
 ## Query params, SQL-injection safe
 
 ```js
-import { fetchVal } from 'placeholder'
+import { fetchVal, sql } from 'placeholder'
 
 const userid = 42
-const name = fetchVal(sql`select name from user where userid = {userid}`))
-console.log(`Hello, {name}`)
+const name = fetchVal(sql`select name from user where userid = ${userid}`))
+console.log(`Hello, ${name}`)
 ```
 
 ## FAQ
