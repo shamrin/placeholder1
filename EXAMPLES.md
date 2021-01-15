@@ -26,9 +26,9 @@ CREATE POLICY user ON user TO userid
 #### Show "Hello, username"
 ```js
 import ReactDOM from 'react-dom'
-import { useFetchOne } from 'placeholder'
+import { use } from 'placeholder/react'
 function Hello() {
-  const user = useFetchOne(`select name from user`)
+  const user = use.fetchValue(`select name from user`)
   return <p>Hello, {user}</p>
 }
 ReactDOM.render(<Hello />, document.getElementById('hello'))
@@ -47,11 +47,12 @@ CREATE POLICY user_counter ON counter TO userid
 #### Button showing how many time you've clicked on it
 ```js
 import ReactDOM from 'react-dom'
-import { useFetchOne, execute } from 'placeholder'
+import { use } from 'placeholder/react'
+import { execute } from 'placeholder'
 function Incrementer() {
-  const counter = useFetchOne(`select value from counter`)
+  const counter = use.fetchValue(`select value from counter`)
   const increment = () => execute(`update counter set value = value + 1`)
-  return <button onClick={increment}>
+  return <button onClick={increment}>{counter}</button>
 }
 ReactDOM.render(<Incrementer />, document.getElementById('incrementer'))
 ```
@@ -61,9 +62,9 @@ Counter updates right away, without waiting for server to confirm the update.
 #### Admin UI
 ```js
 import ReactDOM from 'react-dom'
-import { useFetchOne, useFetchAll } from 'placeholder'
+import { use } from 'placeholder/react'
 function Incrementer() {
-  let counters = useFetchAll(`select counterid, name, value from counter join user on userid`)
+  let counters = use.fetchAll(`select counterid, name, value from counter join user on userid`)
 
   return (
     <table>
@@ -79,10 +80,10 @@ ReactDOM.render(<Incrementer />, document.getElementById('incrementer'))
 ## Query params, SQL-injection safe
 
 ```js
-import { fetchVal, sql } from 'placeholder'
+import { fetchValue, sql } from 'placeholder'
 
 const userid = 42
-const name = fetchVal(sql`select name from user where userid = ${userid}`))
+const name = fetchValue(sql`select name from user where userid = ${userid}`))
 console.log(`Hello, ${name}`)
 ```
 
@@ -90,14 +91,14 @@ console.log(`Hello, ${name}`)
 
 ```svelte
 <script>
-import { fetchOneStore } from 'placeholder'
-const user = fetchOneStore(`select name from user`)
+import { fetchValue } from 'placeholder/svelte'
+const user = fetchValue(`select name from user`)
 </script>
 
 <p>Hello, {$user}</p>
 ```
 
-(`fetchOneStore` is a [readable store](https://svelte.dev/tutorial/readable-stores).)
+(`fetchValueStore` is a [readable store](https://svelte.dev/tutorial/readable-stores).)
 
 ## FAQ
 
